@@ -52,19 +52,6 @@ document
           }, 300);
 
           // Reset after delay
-          setTimeout(() => {
-            form.style.display = "block";
-            form.style.transform = "scale(1)";
-            form.style.opacity = "1";
-            successMessage.style.display = "none";
-            this.reset();
-
-            // Reset button state
-            submitBtn.querySelector(".submit-btn-text").textContent =
-              originalText;
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-          }, 4000);
         } else {
           console.error(data.message);
           submitBtn.querySelector(".submit-btn-text").textContent =

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patterned - Join the Waitlist</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #442c2e;
+        --accent: #fedbd0;
+        --dark: #1a1a1a;
+        --surface: rgba(255, 255, 255, 0.08);
+        --surface-hover: rgba(255, 255, 255, 0.12);
+        --text-primary: #442c2e;
+        --text-secondary: rgba(68, 44, 46, 0.8);
+        --text-muted: rgba(68, 44, 46, 0.6);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --shadow-soft: 0 8px 32px rgba(68, 44, 46, 0.12);
+        --shadow-medium: 0 16px 64px rgba(68, 44, 46, 0.16);
+        --shadow-strong: 0 32px 128px rgba(68, 44, 46, 0.24);
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: var(--text-primary);
+        background: linear-gradient(
+          135deg,
+          #fedbd0 0%,
+          #f5c9b8 25%,
+          #e8b5a2 50%,
+          #daa18c 75%,
+          #cc8d76 100%
+        );
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.03;
+        pointer-events: none;
+        background-image: radial-gradient(
+            circle at 25% 25%,
+            #442c2e 2px,
+            transparent 2px
+          ),
+          radial-gradient(circle at 75% 75%, #442c2e 1px, transparent 1px);
+        background-size: 60px 60px, 40px 40px;
+        animation: drift 20s linear infinite;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 40px 0;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(68, 44, 46, 0.1) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(68, 44, 46, 0.08) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 50% 10%,
+            rgba(254, 219, 208, 0.3) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+
+      .hero-content {
+        max-width: 680px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+      }
+
+      .logo-container {
+        margin-bottom: 32px;
+        animation: logoFloat 3s ease-in-out infinite;
+      }
+
+      .logo {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+        position: relative;
+        filter: drop-shadow(0 8px 32px rgba(68, 44, 46, 0.2));
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05) rotate(2deg);
+      }
+
+      .logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, var(--primary) 0%, #5a3a3c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        letter-spacing: -0.01em;
+      }
+
+      .hero-description {
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: 48px;
+        max-width: 580px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .highlight {
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(68, 44, 46, 0.1) 0%
+        );
+        color: var(--primary);
+        font-weight: 600;
+        padding: 0 4px;
+        border-radius: 4px;
+      }
+
+      .waitlist-section {
+        position: relative;
+        margin-bottom: 80px;
+      }
+
+      .waitlist-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(24px);
+        border-radius: 24px;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-medium);
+        padding: 48px;
+        position: relative;
+        overflow: hidden;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .waitlist-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(68, 44, 46, 0.2),
+          transparent
+        );
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .form-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+
+      .form-subtitle {
+        font-size: 0.9375rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        letter-spacing: 0.01em;
+      }
+
+      .select-wrapper {
+        position: relative;
+      }
+
+      .form-select {
+        width: 100%;
+        padding: 16px 20px;
+        padding-right: 50px;
+        border: 2px solid transparent;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: rgba(254, 219, 208, 0.4);
+        color: var(--text-primary);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        backdrop-filter: blur(8px);
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .form-select:focus {
+        border-color: var(--primary);
+        background: rgba(254, 219, 208, 0.6);
+        box-shadow: 0 0 0 4px rgba(68, 44, 46, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .form-select option {
+        background: white;
+        color: var(--text-primary);
+        padding: 12px 16px;
+        font-weight: 500;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+
+      .form-select optgroup {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .select-arrow {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--text-muted);
+        transition: all 0.3s ease;
+      }
+
+      .form-select:focus + .select-arrow {
+        color: var(--primary);
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid transparent;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 500;
+        background: rgba(254, 219, 208, 0.4);
+        color: var(--text-primary);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+        backdrop-filter: blur(8px);
+      }
+
+      .form-input:focus {
+        border-color: var(--primary);
+        background: rgba(254, 219, 208, 0.6);
+        box-shadow: 0 0 0 4px rgba(68, 44, 46, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .form-input::placeholder {
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 18px 24px;
+        background: linear-gradient(135deg, var(--primary) 0%, #5a3a3c 100%);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .submit-btn:hover::before {
+        left: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-strong);
+      }
+
+      .submit-btn:active {
+        transform: translateY(0);
+      }
+
+      .submit-btn-text {
+        position: relative;
+        z-index: 1;
+      }
+
+      .success-message {
+        display: none;
+        background: linear-gradient(
+          135deg,
+          rgba(34, 197, 94, 0.1),
+          rgba(22, 163, 74, 0.1)
+        );
+        border: 2px solid rgba(34, 197, 94, 0.3);
+        color: #15803d;
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 16px;
+        text-align: center;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 32px;
+        margin-top: 80px;
+        padding: 0 24px;
+      }
+
+      .feature-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        padding: 32px 28px;
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .feature-card:hover::before {
+        opacity: 1;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-medium);
+        border-color: rgba(68, 44, 46, 0.2);
+      }
+
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--primary), #5a3a3c);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.75rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 70%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+      }
+
+      .feature-card:hover .feature-icon::before {
+        transform: translateX(100%);
+      }
+
+      .feature-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        letter-spacing: -0.01em;
+      }
+
+      .feature-description {
+        font-size: 0.9375rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-weight: 500;
+      }
+
+      .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .floating-element {
+        position: absolute;
+        background: rgba(68, 44, 46, 0.05);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .floating-element:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        top: 15%;
+        left: 8%;
+        animation-delay: 0s;
+      }
+
+      .floating-element:nth-child(2) {
+        width: 80px;
+        height: 80px;
+        top: 60%;
+        right: 12%;
+        animation-delay: 3s;
+      }
+
+      .floating-element:nth-child(3) {
+        width: 160px;
+        height: 160px;
+        bottom: 25%;
+        left: 15%;
+        animation-delay: 6s;
+      }
+
+      .floating-element:nth-child(4) {
+        width: 60px;
+        height: 60px;
+        top: 30%;
+        right: 25%;
+        animation-delay: 2s;
+      }
+
+      @keyframes logoFloat {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(1deg);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) scale(1) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-20px) scale(1.05) rotate(90deg);
+        }
+        50% {
+          transform: translateY(-10px) scale(0.95) rotate(180deg);
+        }
+        75% {
+          transform: translateY(-30px) scale(1.02) rotate(270deg);
+        }
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translateX(0px) translateY(0px);
+        }
+        33% {
+          transform: translateX(10px) translateY(-5px);
+        }
+        66% {
+          transform: translateX(-8px) translateY(8px);
+        }
+        100% {
+          transform: translateX(0px) translateY(0px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          min-height: 100svh;
+          padding: 20px 0;
+        }
+
+        .logo {
+          width: 100px;
+          height: 100px;
+        }
+
+        .waitlist-card {
+          padding: 32px 24px;
+          margin: 0 16px;
+          border-radius: 20px;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          margin-top: 60px;
+          padding: 0 16px;
+        }
+
+        .feature-card {
+          padding: 28px 24px;
+        }
+
+        .floating-element {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 16px;
+        }
+
+        .hero-content {
+          padding: 0;
+        }
+
+        .waitlist-card {
+          padding: 24px 20px;
+          margin: 0 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="logo-container">
+            <div class="logo">
+              <img
+                src="Assets/Patterned logo official.png"
+                alt="Patterned Logo"
+              />
+            </div>
+          </div>
+
+          <h1 class="hero-title">Coming Soon...</h1>
+          <p class="hero-subtitle">
+            Your Lifestyle Services, Perfectly Connected
+          </p>
+
+          <p class="hero-description">
+            Discover, book, and enjoy premium
+            <span class="highlight"
+              >beauty, grooming, and wellness services</span
+            >
+            near you with trusted pros, real-time booking, and secure payments.
+          </p>
+
+          <div class="waitlist-section">
+            <div class="waitlist-card">
+              <div class="form-header">
+                <h2 class="form-title">Join Our Exclusive Waitlist</h2>
+                <p class="form-subtitle">
+                  Be the first to experience the future of lifestyle services
+                </p>
+              </div>
+
+              <form id="waitlistForm">
+                <div class="form-group">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="userType" class="form-label"
+                    >I'm interested as a:</label
+                  >
+                  <div class="select-wrapper">
+                    <select
+                      id="userType"
+                      name="userType"
+                      class="form-select"
+                      required
+                    >
+                      <option value="">Select your interest</option>
+                      <option value="client">
+                        🙋‍♀️ Client (Looking for services)
+                      </option>
+                      <option value="provider">
+                        💼 Service Provider (Offering services)
+                      </option>
+                      <option value="both">⭐ Both Client and Provider</option>
+                    </select>
+                    <div class="select-arrow">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 7.5L10 12.5L15 7.5"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="location" class="form-label">County</label>
+                  <div class="select-wrapper">
+                    <select
+                      id="location"
+                      name="location"
+                      class="form-select"
+                      required
+                    >
+                      <option value="">Select your county</option>
+                      <option value="bedfordshire">Bedfordshire</option>
+                      <option value="berkshire">Berkshire</option>
+                      <option value="buckinghamshire">Buckinghamshire</option>
+                      <option value="cambridgeshire">Cambridgeshire</option>
+                      <option value="cheshire">Cheshire</option>
+                      <option value="cornwall">Cornwall</option>
+                      <option value="cumbria">Cumbria</option>
+                      <option value="derbyshire">Derbyshire</option>
+                      <option value="devon">Devon</option>
+                      <option value="dorset">Dorset</option>
+                      <option value="durham">Durham</option>
+                      <option value="east-sussex">East Sussex</option>
+                      <option value="essex">Essex</option>
+                      <option value="gloucestershire">Gloucestershire</option>
+                      <option value="greater-london">Greater London</option>
+                      <option value="greater-manchester">
+                        Greater Manchester
+                      </option>
+                      <option value="hampshire">Hampshire</option>
+                      <option value="herefordshire">Herefordshire</option>
+                      <option value="hertfordshire">Hertfordshire</option>
+                      <option value="kent">Kent</option>
+                      <option value="lancashire">Lancashire</option>
+                      <option value="leicestershire">Leicestershire</option>
+                      <option value="lincolnshire">Lincolnshire</option>
+                      <option value="merseyside">Merseyside</option>
+                      <option value="norfolk">Norfolk</option>
+                      <option value="northamptonshire">Northamptonshire</option>
+                      <option value="northumberland">Northumberland</option>
+                      <option value="north-yorkshire">North Yorkshire</option>
+                      <option value="nottinghamshire">Nottinghamshire</option>
+                      <option value="oxfordshire">Oxfordshire</option>
+                      <option value="rutland">Rutland</option>
+                      <option value="shropshire">Shropshire</option>
+                      <option value="somerset">Somerset</option>
+                      <option value="south-yorkshire">South Yorkshire</option>
+                      <option value="staffordshire">Staffordshire</option>
+                      <option value="suffolk">Suffolk</option>
+                      <option value="surrey">Surrey</option>
+                      <option value="tyne-and-wear">Tyne and Wear</option>
+                      <option value="warwickshire">Warwickshire</option>
+                      <option value="west-midlands">West Midlands</option>
+                      <option value="west-sussex">West Sussex</option>
+                      <option value="west-yorkshire">West Yorkshire</option>
+                      <option value="wiltshire">Wiltshire</option>
+                      <option value="worcestershire">Worcestershire</option>
+                      <optgroup label="Scotland">
+                        <option value="aberdeenshire">Aberdeenshire</option>
+                        <option value="angus">Angus</option>
+                        <option value="argyll-and-bute">Argyll and Bute</option>
+                        <option value="clackmannanshire">
+                          Clackmannanshire
+                        </option>
+                        <option value="dumfries-and-galloway">
+                          Dumfries and Galloway
+                        </option>
+                        <option value="dundee">Dundee</option>
+                        <option value="east-ayrshire">East Ayrshire</option>
+                        <option value="east-dunbartonshire">
+                          East Dunbartonshire
+                        </option>
+                        <option value="east-lothian">East Lothian</option>
+                        <option value="east-renfrewshire">
+                          East Renfrewshire
+                        </option>
+                        <option value="edinburgh">Edinburgh</option>
+                        <option value="falkirk">Falkirk</option>
+                        <option value="fife">Fife</option>
+                        <option value="glasgow">Glasgow</option>
+                        <option value="highland">Highland</option>
+                        <option value="inverclyde">Inverclyde</option>
+                        <option value="midlothian">Midlothian</option>
+                        <option value="moray">Moray</option>
+                        <option value="north-ayrshire">North Ayrshire</option>
+                        <option value="north-lanarkshire">
+                          North Lanarkshire
+                        </option>
+                        <option value="orkney-islands">Orkney Islands</option>
+                        <option value="perth-and-kinross">
+                          Perth and Kinross
+                        </option>
+                        <option value="renfrewshire">Renfrewshire</option>
+                        <option value="scottish-borders">
+                          Scottish Borders
+                        </option>
+                        <option value="shetland-islands">
+                          Shetland Islands
+                        </option>
+                        <option value="south-ayrshire">South Ayrshire</option>
+                        <option value="south-lanarkshire">
+                          South Lanarkshire
+                        </option>
+                        <option value="stirling">Stirling</option>
+                        <option value="west-dunbartonshire">
+                          West Dunbartonshire
+                        </option>
+                        <option value="west-lothian">West Lothian</option>
+                        <option value="western-isles">Western Isles</option>
+                      </optgroup>
+                      <optgroup label="Wales">
+                        <option value="anglesey">Anglesey</option>
+                        <option value="blaenau-gwent">Blaenau Gwent</option>
+                        <option value="bridgend">Bridgend</option>
+                        <option value="caerphilly">Caerphilly</option>
+                        <option value="cardiff">Cardiff</option>
+                        <option value="carmarthenshire">Carmarthenshire</option>
+                        <option value="ceredigion">Ceredigion</option>
+                        <option value="conwy">Conwy</option>
+                        <option value="denbighshire">Denbighshire</option>
+                        <option value="flintshire">Flintshire</option>
+                        <option value="gwynedd">Gwynedd</option>
+                        <option value="merthyr-tydfil">Merthyr Tydfil</option>
+                        <option value="monmouthshire">Monmouthshire</option>
+                        <option value="neath-port-talbot">
+                          Neath Port Talbot
+                        </option>
+                        <option value="newport">Newport</option>
+                        <option value="pembrokeshire">Pembrokeshire</option>
+                        <option value="powys">Powys</option>
+                        <option value="rhondda-cynon-taf">
+                          Rhondda Cynon Taf
+                        </option>
+                        <option value="swansea">Swansea</option>
+                        <option value="torfaen">Torfaen</option>
+                        <option value="vale-of-glamorgan">
+                          Vale of Glamorgan
+                        </option>
+                        <option value="wrexham">Wrexham</option>
+                      </optgroup>
+                      <optgroup label="Northern Ireland">
+                        <option value="antrim">Antrim</option>
+                        <option value="armagh">Armagh</option>
+                        <option value="belfast">Belfast</option>
+                        <option value="down">Down</option>
+                        <option value="fermanagh">Fermanagh</option>
+                        <option value="londonderry">Londonderry</option>
+                        <option value="tyrone">Tyrone</option>
+                      </optgroup>
+                    </select>
+                    <div class="select-arrow">
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                      >
+                        <path
+                          d="M5 7.5L10 12.5L15 7.5"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                  <span class="submit-btn-text">Join Waitlist</span>
+                </button>
+              </form>
+              <div class="success-message" id="successMessage">
+                🎉 Amazing! You're now on our exclusive waitlist. We'll notify
+                you as soon as Patterned launches!
+              </div>
+            </div>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🗺️</div>
+              <div class="feature-title">Interactive Discovery</div>
+              <div class="feature-description">
+                Find the perfect services near you with our intelligent
+                map-based discovery system
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💬</div>
+              <div class="feature-title">In-App Messaging</div>
+              <div class="feature-description">
+                Chat directly with service providers to discuss details, ask
+                questions, and coordinate your appointments seamlessly
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">💳</div>
+              <div class="feature-title">Secure Payments</div>
+              <div class="feature-description">
+                Safe and seamless payment processing built right into the app
+                with multiple payment options
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <div class="feature-title">Real-Time Booking</div>
+              <div class="feature-description">
+                Book appointments instantly with live availability updates and
+                automatic confirmations
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer
+      style="
+        text-align: center;
+        padding: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid var(--glass-border);
+        margin-top: 60px;
+      "
+    >
+      a <span class="highlight">Bluescope Group</span>
+      application
+    </footer>
+
+    <script>
+      // Enhanced form submission with better UX
+      document
+        .getElementById("waitlistForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const submitBtn = this.querySelector(".submit-btn");
+          const originalText =
+            submitBtn.querySelector(".submit-btn-text").textContent;
+
+          // Show loading state
+          submitBtn.querySelector(".submit-btn-text").textContent =
+            "Joining...";
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.7";
+
+          // Simulate API call delay
+          setTimeout(() => {
+            // Get form data
+            const formData = {
+              email: document.getElementById("email").value,
+              userType: document.getElementById("userType").value,
+              location: document.getElementById("location").value,
+              timestamp: new Date().toISOString(),
+            };
+
+            // Store data (in real app, send to server)
+            console.log("Waitlist submission:", formData);
+
+            // Show success state
+            const form = document.getElementById("waitlistForm");
+            const successMessage = document.getElementById("successMessage");
+
+            form.style.transform = "scale(0.95)";
+            form.style.opacity = "0.3";
+
+            setTimeout(() => {
+              form.style.display = "none";
+              successMessage.style.display = "block";
+              successMessage.style.animation = "slideInUp 0.5s ease-out";
+            }, 300);
+
+            // Reset after delay
+            setTimeout(() => {
+              form.style.display = "block";
+              form.style.transform = "scale(1)";
+              form.style.opacity = "1";
+              successMessage.style.display = "none";
+              this.reset();
+
+              // Reset button state
+              submitBtn.querySelector(".submit-btn-text").textContent =
+                originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.opacity = "1";
+            }, 4000);
+          }, 1500);
+        });
+
+      // Enhanced feature card interactions
+      document.querySelectorAll(".feature-card").forEach((card, index) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = `translateY(-12px) scale(1.03) rotate(${
+            Math.random() * 2 - 1
+          }deg)`;
+
+          // Animate icon
+          const icon = this.querySelector(".feature-icon");
+          icon.style.transform = "scale(1.1) rotate(5deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1) rotate(0deg)";
+
+          const icon = this.querySelector(".feature-icon");
+          icon.style.transform = "scale(1) rotate(0deg)";
+        });
+
+        // Stagger animation on load
+        card.style.opacity = "0";
+        card.style.transform = "translateY(30px)";
+
+        setTimeout(() => {
+          card.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)";
+          card.style.opacity = "1";
+          card.style.transform = "translateY(0)";
+        }, 200 + index * 150);
+      });
+
+      // Form input enhancements
+      document.querySelectorAll(".form-input").forEach((input) => {
+        input.addEventListener("focus", function () {
+          this.parentElement.style.transform = "translateY(-2px)";
+        });
+
+        input.addEventListener("blur", function () {
+          this.parentElement.style.transform = "translateY(0)";
+        });
+      });
+
+      // Parallax effect for floating elements
+      window.addEventListener("mousemove", (e) => {
+        const elements = document.querySelectorAll(".floating-element");
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+
+        elements.forEach((element, index) => {
+          const speed = (index + 1) * 0.5;
+          const xMove = (x - 0.5) * speed * 20;
+          const yMove = (y - 0.5) * speed * 20;
+
+          element.style.transform += ` translate(${xMove}px, ${yMove}px)`;
+        });
+      });
+
+      // Smooth scroll and intersection observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Performance optimization
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (prefersReducedMotion) {
+        document.querySelectorAll("*").forEach((el) => {
+          el.style.animationDuration = "0.01ms";
+          el.style.transitionDuration = "0.01ms";
+        });
+      }
+    </script>
+  </body>
+</html>
